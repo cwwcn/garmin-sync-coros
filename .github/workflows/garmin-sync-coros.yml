@@ -1,4 +1,4 @@
-name: garmin-sync-coros
+name: 佳明到高驰garmin-sync-coros
 
 on:
   workflow_dispatch:
