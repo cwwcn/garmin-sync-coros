@@ -2,6 +2,8 @@ name: 佳明到高驰garmin-sync-coros
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '30 9,22 * * ?'
   
 env:
   GITHUB_NAME: cwwcn
