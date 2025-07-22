@@ -36,25 +36,24 @@ if __name__ == "__main__":
       if os.getenv(k):
           v = os.getenv(k)
           SYNC_CONFIG[k] = v
-
-  COROS_EMAIL = SYNC_CONFIG["COROS_EMAIL"]
-  COROS_PASSWORD = SYNC_CONFIG["COROS_PASSWORD"]
-  corosClient = CorosClient(COROS_EMAIL, COROS_PASSWORD)
-
-  GARMIN_EMAIL = SYNC_CONFIG["GARMIN_EMAIL"]
-  GARMIN_PASSWORD = SYNC_CONFIG["GARMIN_PASSWORD"]
-  GARMIN_AUTH_DOMAIN = SYNC_CONFIG["GARMIN_AUTH_DOMAIN"]
-  GARMIN_NEWEST_NUM = SYNC_CONFIG["GARMIN_NEWEST_NUM"]
-
-  garminClient = GarminClient(GARMIN_EMAIL, GARMIN_PASSWORD, GARMIN_AUTH_DOMAIN, GARMIN_NEWEST_NUM)
-
-
+          
   ## db 名称
   db_name = "coros.db"
   ## 建立DB链接
   coros_db = CorosDB(db_name)
   ## 初始化DB位置和下载文件位置
   init(coros_db)
+ 
+  GARMIN_EMAIL = SYNC_CONFIG["GARMIN_EMAIL"]
+  GARMIN_PASSWORD = SYNC_CONFIG["GARMIN_PASSWORD"]
+  GARMIN_AUTH_DOMAIN = SYNC_CONFIG["GARMIN_AUTH_DOMAIN"]
+  GARMIN_NEWEST_NUM = SYNC_CONFIG["GARMIN_NEWEST_NUM"]
+  garminClient = GarminClient(GARMIN_EMAIL, GARMIN_PASSWORD, GARMIN_AUTH_DOMAIN, GARMIN_NEWEST_NUM)
+
+  COROS_EMAIL = SYNC_CONFIG["COROS_EMAIL"]
+  COROS_PASSWORD = SYNC_CONFIG["COROS_PASSWORD"]
+  corosClient = CorosClient(COROS_EMAIL, COROS_PASSWORD)
+  corosClient.login()
 
   all_activities = corosClient.getAllActivities()
   if all_activities == None or len(all_activities) == 0:
